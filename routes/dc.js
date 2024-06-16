@@ -67,7 +67,19 @@ router.patch('/:id', ( req, res, next ) => {
     }
 })
 
+// The DELETE method to remove a DC section
+router.delete('/:id', ( req, res ) => {
+    const dcs = dc.find((d, i) => {
+        if (d.id == req.params.id) {
+            dc.splice(i, 1);
+            return true;
+        }
+    })
+    if (dcs) res.json(dcs);
+    else next();
+})
 
+module.exports = router;
 
 
 
