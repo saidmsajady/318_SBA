@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const dcRouter = require('./routes/dc.js');
-const marvelRouter = require('./routes/marvel.js');
-const pokemonRouter = require('./routes/pokemon.js');
+const dcRouter = require('./routes/dcs.js');
+const marvelRouter = require('./routes/marvels.js');
+const pokemonRouter = require('./routes/pokemons.js');
 
 // Body Parse MiddleWare
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +22,9 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+// Serve static files from the 'styles' directory
+app.use(express.static('styles'));
 
 // API Routes
 app.use('/api/dcs', dcRouter);
@@ -81,52 +84,54 @@ app.get('/api', (req, res) => {
 // Creating a new DC Section using forms
 app.get('/dcs/new', (req, res) => {
   res.send(`
-    <div>
+    <div class="dc">
+      <link rel="stylesheet" type="text/css" href="/styles.css">
       <h1>Add Another Superhero to your Justice League</h1>
-      <form action="/api/dcs method="POST">
-        Name: <input type="text" name="name" /> <br/>
-        Affiliation: <input type="text" name="affiliation" /> <br/>
-        Enemy: <input type="text" name="enemy" /> <br/>
-        Species: <input type="text" name="species" /> <br/>
-        <br/>
+      <form action="/api/dcs" method="POST">
+        Name: <input type="text" name="name" /> <br><br>
+        Affiliation: <input type="text" name="affiliation" /> <br/><br/>
+        Enemy: <input type="text" name="enemy" /> <br><br>
+        Species: <input type="text" name="species" /> <br><br>
         <input type="submit" value="Create Section" /> 
       </form>
-    </div>
-    `)
+    </div>`
+  )
 })
 
 // Creating a new Marvel Section using forms
 app.get('/marvels/new', (req, res) => {
-  res.send(`
-    <div>
-      <h1>Add Another Superhero to you Avengers Team</h1>
-      <form action="/api/marvels method="POST">
-        Name: <input type="text" name="name" /> <br/>
-        Affiliation: <input type="text" name="affiliation" /> <br/>
-        Enemy: <input type="text" name="enemy" /> <br/>
-        Species: <input type="text" name="species" /> <br/>
-        <br/>
+  res.send(
+    `<div class="marvel">
+      <link rel="stylesheet" type="text/css" href="/styles.css">
+      <h1>Add Another Superhero to your Avengers Team</h1>
+      <form action="/api/marvels" method="POST">
+        Name: <input type="text" name="name" /> <br><br>
+        Affiliation: <input type="text" name="affiliation" /> <br><br>
+        Enemy: <input type="text" name="enemy" /> <br><br>
+        Species: <input type="text" name="species" /> <br><br>
         <input type="submit" value="Create Section" /> 
       </form>
-    </div>
-    `)
+    </div>`
+  )
 })
 
 // Creating a new Pokemon Section using forms
 app.get('/pokemons/new', (req, res) => {
-  res.send(`
-    <div>
+  res.send(
+    `<div class="pokemon">
+      <link rel="stylesheet" type="text/css" href="/styles.css">
       <h1>Add Another Pokemon to your Team</h1>
-      <form action="/api/dcs method="POST">
-        Name: <input type="text" name="name" /> <br/>
-        Affiliation: <input type="text" name="affiliation" /> <br/>
-        Enemy: <input type="text" name="enemy" /> <br/>
-        Species: <input type="text" name="species" /> <br/>
-        <br/>
+      <div class="dcInput">
+      <form action="/api/pokemons" method="POST">
+        Name: <input type="text" name="name" /> <br><br>
+        Type: <input type="text" name="type" /> <br><br>
+        Pokedex: <input type="text" name="pokedex" /> <br><br>
+        Gen: <input type="text" name="gen" /> <br><br>
         <input type="submit" value="Create Section" /> 
       </form>
-    </div>
-    `)
+      </div>
+    </div>`
+  )
 })
 
 // Middleware Support

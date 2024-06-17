@@ -1,0 +1,19 @@
+* {
+    text-align: center;
+    background-color: rgb(198, 198, 198);
+}
+
+.dc {
+    color: blue;
+    padding: 10px;
+}
+
+.marvel {
+    color: red;
+    padding: 10px;
+}
+
+.pokemon {
+    color: green;
+    padding: 10px;
+}
