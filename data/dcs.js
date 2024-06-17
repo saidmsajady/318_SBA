@@ -1,4 +1,4 @@
-const dc = [
+const dcs = [
     {
         id: 1,
         name: "Batman",
@@ -22,4 +22,4 @@ const dc = [
     },
 ];
 
-module.exports = dc;
+module.exports = dcs;

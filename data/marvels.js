@@ -1,4 +1,4 @@
-const marvel = [
+const marvels = [
     {
         id: 1,
         name: "Captian America",
@@ -22,4 +22,4 @@ const marvel = [
     },
 ];
 
-module.exports = marvel;
+module.exports = marvels;
